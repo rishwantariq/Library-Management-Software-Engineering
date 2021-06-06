@@ -1,0 +1,80 @@
+CREATE SCHEMA `library` ;
+
+CREATE TABLE `library`.`member` (
+  `memberID` INT NOT NULL AUTO_INCREMENT,
+  `memberName` VARCHAR(45) NOT NULL,
+  `memberCNIC` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`memberID`));
+
+
+CREATE TABLE `library`.`book` (
+  `bookID` INT NOT NULL AUTO_INCREMENT,
+  `bookTitle` VARCHAR(45) NULL,
+  `bookDescription` VARCHAR(250) NULL,
+  `authorsName` VARCHAR(45) NULL,
+  `totalPages` INT NULL,
+  `totalCopies` INT NULL,
+  `seriesTitle` VARCHAR(45) NULL,
+  `seriesNumber` INT NULL,
+  `genre` VARCHAR(45) NULL,
+  `bookCover` VARCHAR(100) NULL,
+  PRIMARY KEY (`bookID`));
+
+
+CREATE TABLE `library`.`issuedBooks` (
+  `recordID` INT NOT NULL AUTO_INCREMENT,
+  `bookID` INT NOT NULL,
+  `memberID` INT NOT NULL,
+  `dateIssued` DATE NOT NULL,
+  PRIMARY KEY (`recordID`));
+
+
+CREATE TABLE `library`.`returnedBooks` (
+  `recordID` INT NOT NULL,
+  `bookID` INT NOT NULL,
+  `memberID` INT NOT NULL,
+  `dateDue` DATE NOT NULL,
+  `dateReturned` DATE NOT NULL,
+  `fine` INT NULL,
+  PRIMARY KEY (`recordID`));
+
+ALTER TABLE `library`.`returnedBooks` 
+CHANGE COLUMN `recordID` `recordID` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `library`.`book` 
+CHANGE COLUMN `bookCover` `bookCover` VARCHAR(300) NULL DEFAULT NULL ;
+
+ALTER TABLE `library`.`book` 
+ADD COLUMN `availableToIssue` TINYINT NULL AFTER `bookCover`;
+
+ALTER TABLE `library`.`book` 
+CHANGE COLUMN `bookDescription` `bookDescription` VARCHAR(450) NULL DEFAULT NULL ;
+
+ALTER TABLE `library`.`book` 
+CHANGE COLUMN `bookDescription` `bookDescription` VARCHAR(800) NULL DEFAULT NULL ;
+
+ALTER TABLE `library`.`book` 
+CHANGE COLUMN `bookTitle` `bookTitle` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `authorsName` `authorsName` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `seriesTitle` `seriesTitle` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `genre` `genre` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `bookCover` `bookCover` VARCHAR(500) NULL DEFAULT NULL ;
+
+INSERT INTO library.member (memberID,memberName, memberCNIC) VALUES(NULL,'Rishwan tariq', '76787-7654321-8');
+INSERT INTO library.member (memberID,memberName, memberCNIC) VALUES(NULL,'Raima Imran', '76783-7656721-0');
+INSERT INTO library.member (memberID,memberName, memberCNIC) VALUES(NULL,'Komal Asim', '64848-8456921-3');
+INSERT INTO `library`.`member` (`memberName`, `memberCNIC`) VALUES ('Zarish Nadeem', '37242-3246391-7');
+INSERT INTO `library`.`member` (`memberName`, `memberCNIC`) VALUES ('Noorish Hassan', '23455-4729102-1');
+
+
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('Six of Crows', 'Ketterdam: a bustling hub of international trade where anything can be had for the right price—and no one knows that better than criminal prodigy Kaz Brekker. Kaz is offered a chance at a deadly heist that could make him rich beyond his wildest dreams. But he can’t pull it off alone. ', 'Leigh Bardugo', '465', '3', 'Six of Crows', '1', 'Fantasy', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/sixofcrows1.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('Six of Crows', 'Ketterdam: a bustling hub of international trade where anything can be had for the right price—and no one knows that better than criminal prodigy Kaz Brekker. Kaz is offered a chance at a deadly heist that could make him rich beyond his wildest dreams. But he can’t pull it off alone. ', 'Leigh Bardugo', '465', '3', 'Six of Crows', '1', 'Fantasy', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/sixofcrows1.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('Six of Crows', 'Ketterdam: a bustling hub of international trade where anything can be had for the right price—and no one knows that better than criminal prodigy Kaz Brekker. Kaz is offered a chance at a deadly heist that could make him rich beyond his wildest dreams. But he can’t pull it off alone. ', 'Leigh Bardugo', '465', '3', 'Six of Crows', '1', 'Fantasy', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/sixofcrows1.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('Crooked Kingdom', 'Welcome to the world of the Grisha.  Kaz Brekker and his crew of deadly outcasts have just pulled off a heist so daring even they didn\'t think they\'d survive. But instead of divvying up a fat reward, they\'re right back to fighting for their lives.  Double-crossed and badly weakened, the crew is low on resources, allies, and hope. ', 'Leigh Bardugo', '536', '2', 'Six of Crows', '2', 'Fantasy', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/sixofcrows2.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('Crooked Kingdom', 'Welcome to the world of the Grisha.  Kaz Brekker and his crew of deadly outcasts have just pulled off a heist so daring even they didn\'t think they\'d survive. But instead of divvying up a fat reward, they\'re right back to fighting for their lives.  Double-crossed and badly weakened, the crew is low on resources, allies, and hope. ', 'Leigh Bardugo', '536', '2', 'Six of Crows', '2', 'Fantasy', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/sixofcrows2.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `genre`, `bookCover`, `availableToIssue`) VALUES ('Jane Eyre', 'Orphaned as a child, Jane has felt an outcast her whole young life. Her courage is tested once again when she arrives at Thornfield Hall, where she has been hired by the brooding, proud Edward Rochester to care for his ward Adèle. Jane finds herself drawn to his troubled yet kind spirit. ', 'Charlotte Bronte', '532', '1', 'Classics', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/janeeyre.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('King of Scars', 'Nikolai Lantsov has always had a gift for the impossible. No one knows what he endured in his country’s bloody civil war—and he intends to keep it that way. Now, as enemies gather at his weakened borders, the young king must find a way to refill Ravka’s coffers, forge new alliances, and stop a rising threat to the once-great Grisha Army. ', 'Leigh Bardugo', '527', '1', 'King of Scars', '1', 'Fantasy', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/kingofscars.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('The Hunger Games', 'In the ruins of a place once known as North America lies the nation of Panem, a shining Capitol surrounded by twelve outlying districts. The Capitol is cruel and keeps the districts in line by forcing them all to send one boy and one girl between the ages of twelve and eighteen to participate in the Hunger Games.', 'Suzanne Collins', '374', '2', 'The Hunger Games', '1', 'Young Adult', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/thehungergames.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('Harry Potter and the Goblet of Fire', 'Harry Potter is midway through his training as a wizard and his coming of age. Harry wants to get away from the pernicious Dursleys and go to the International Quidditch Cup with Hermione, Ron, and the Weasleys. ', 'J.K. Rowling', '511', '2', 'Harry Potter', '4', 'Fantasy', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/harrypotter4.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `seriesTitle`, `seriesNumber`, `genre`, `bookCover`, `availableToIssue`) VALUES ('Harry Potter and the Goblet of Fire', 'Harry Potter is midway through his training as a wizard and his coming of age. Harry wants to get away from the pernicious Dursleys and go to the International Quidditch Cup with Hermione, Ron, and the Weasleys. ', 'J.K. Rowling', '511', '2', 'Harry Potter', '4', 'Fantasy', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/harrypotter4.jpg', '1');
+INSERT INTO `library`.`book` (`bookTitle`, `bookDescription`, `authorsName`, `totalPages`, `totalCopies`, `genre`, `bookCover`, `availableToIssue`) VALUES ('David Copperfield', 'David Copperfield is the story of a young man\'s adventures on his journey from an unhappy and impoverished childhood to the discovery of his vocation as a successful novelist. Among the gloriously vivid cast of characters he encounters are his tyrannical stepfather, Mr Murdstone; his brilliant, but ultimately unworthy school-friend James Steerforth; his formidable aunt, Betsey Trotwood; the eternally humble, yet treacherous Uriah Heep; frivolous, enchanting Dora Spenlow; and the magnificently impecunious Wilkins Micawber, one of literature\'s great comic creations.', 'Charles Dickens', '882', '1', 'Classics', '/Users/noorishhassan/Documents/university/semester 7/SE/LibraryManagementSystem/src/LibraryManagementSystem/davidcopperfield.jpg', '1');
